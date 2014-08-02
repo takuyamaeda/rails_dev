@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "rails_dev"
+  config.vm.box = "centos-6-x64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.10"
-  config.hostpath.env_key = "http_VAGRANT_HOST_PATH"
+  #config.hostpath.env_key = "http_VAGRANT_HOST_PATH"
   #config.hostpath.path_file = "/tmp/.vagrant-host-path"
   #config.hostpath.profile_path = "/etc/profile.d/vagrant-host-path.sh"
 

@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "centos-6-x64"
+  config.vm.box = "centos"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.33.10"
+  # config.vm.network "private_network", ip: "192.168.33.10"
   #config.hostpath.env_key = "http_VAGRANT_HOST_PATH"
   #config.hostpath.path_file = "/tmp/.vagrant-host-path"
   #config.hostpath.profile_path = "/etc/profile.d/vagrant-host-path.sh"
@@ -100,12 +100,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   # You may also specify custom JSON attributes:
   #   chef.json = { mysql_password: "foo" }
   # end
-  config.berkshelf.enabled = true
   config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "site-cookbooks"
     chef.run_list = [
-      "sample"
+      "git",
+      "rbenv::default",
+      "rbenv::install",
+      "rails::bundler",
+      "rails::default",
+      "rails::nokogiri",
+      "rails::sqlite",
+      "passenger",
+      "iptables",
+      "postgresql"
     ]
   end
+  config.vm.boot_timeout = 7200
   
 
   # Enable provisioning with chef server, specifying the chef server URL,

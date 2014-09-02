@@ -1,1 +1,7 @@
 /cookbooks/
+action_provision
+action_set_name
+id
+index_uuid
+synced_folders
+/.vagrant/
